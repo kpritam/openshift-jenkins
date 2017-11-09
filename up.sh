@@ -11,4 +11,4 @@ oc create -f volumes/coursier_pvc.yaml
 oc create -f volumes/ivy2_pvc.yaml  
 oc create -f volumes/ws_pvc.yaml 
 
-oc process -f jenkins.yaml | oc create -f - -n cicd
+oc process -f jenkins.yml | oc create -f - -n cicd
