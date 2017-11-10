@@ -106,7 +106,7 @@ objects:
           <alwaysPullImage>false</alwaysPullImage>
           <instanceCap>2147483647</instanceCap>
           <idleMinutes>0</idleMinutes>
-          <label>sbt</label>
+          <label>sbt-1</label>
           <serviceAccount>jenkins</serviceAccount>
           <nodeSelector></nodeSelector>
           <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>
@@ -167,7 +167,7 @@ objects:
           <alwaysPullImage>false</alwaysPullImage>
           <instanceCap>2147483647</instanceCap>
           <idleMinutes>0</idleMinutes>
-          <label>sbt</label>
+          <label>sbt-2</label>
           <serviceAccount>jenkins</serviceAccount>
           <nodeSelector></nodeSelector>
           <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>

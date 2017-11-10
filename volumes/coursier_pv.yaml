@@ -6,10 +6,10 @@ metadata:
     name: coursier-pv
 spec:
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   nfs:
-    path: /root/.coursier
+    path: /export/coursier
     server: 127.0.0.1
   persistentVolumeReclaimPolicy: Recycle

@@ -6,10 +6,10 @@ metadata:
     name: ivy2-pv
 spec:
   capacity:
-    storage: 5Gi 
+    storage: 1Gi 
   accessModes:
-  - ReadWriteOnce 
+  - ReadWriteMany 
   nfs: 
-    path: /root/.ivy2
+    path: /export/ivy
     server: 127.0.0.1
   persistentVolumeReclaimPolicy: Recycle

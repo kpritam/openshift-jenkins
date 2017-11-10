@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csw-pv
+  labels:
+    name: csw-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    path: /export/mnt
+    server: 127.0.0.1
+  persistentVolumeReclaimPolicy: Recycle
