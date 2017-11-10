@@ -11,5 +11,5 @@
     1. docker tag twtmt/openshift/jenkins-2.89 docker-registry.default.svc:5000/openshift/jenkins-2.89
     2. oc tag twtmt/openshift/jenkins-2.89 docker-registry.default.svc:5000/openshift/jenkins-2.89
     3. oc whoami -t
-    4. docker login --username=pritam --email=phkadam2008@gmail.com.com --password=<token> docker-registry.default.svc:5000
+    4. docker login --username=pritam --email=phkadam2008@gmail.com --password=<token> docker-registry.default.svc:5000
     5. docker push docker-registry.default.svc:5000/openshift/jenkins-2.89

@@ -36,7 +36,7 @@ objects:
     labels:
       app: cicd-pipeline
       name: cicd-pipeline
-    name: tasks-pipeline
+    name: csw-prod-pipeline
   spec:
     triggers:
       - type: GitHub
@@ -109,9 +109,10 @@ objects:
           <label>sbt-1</label>
           <serviceAccount>jenkins</serviceAccount>
           <nodeSelector></nodeSelector>
-          <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>
-          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.EmptyDirWorkspaceVolume">
-              <memory>false</memory>
+          <customWorkspaceVolumeEnabled>true</customWorkspaceVolumeEnabled>
+          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.PersistentVolumeClaimWorkspaceVolume">
+              <claimName>csw-pvc</claimName>
+              <readOnly>false</readOnly>
           </workspaceVolume>
           <volumes>
               <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
@@ -124,11 +125,6 @@ objects:
                   <claimName>coursier-pvc</claimName>
                   <readOnly>false</readOnly>
               </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
-              <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
-                  <mountPath>/tmp/workspace/cicd-tasks-pipeline</mountPath>
-                  <claimName>workspace-pvc</claimName>
-                  <readOnly>false</readOnly>
-              </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
           </volumes>
           <containers>
               <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
@@ -136,7 +132,7 @@ objects:
                   <image>twtmt/opneshift/jenkins-slave-mvn-sbt</image>
                   <privileged>false</privileged>
                   <alwaysPullImage>false</alwaysPullImage>
-                  <workingDir>/tmp</workingDir>
+                  <workingDir>/home/jenkins/jobs</workingDir>
                   <command></command>
                   <args>${computer.jnlpmac} ${computer.name}</args>
                   <ttyEnabled>false</ttyEnabled>
@@ -171,8 +167,9 @@ objects:
           <serviceAccount>jenkins</serviceAccount>
           <nodeSelector></nodeSelector>
           <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>
-          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.EmptyDirWorkspaceVolume">
-              <memory>false</memory>
+          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.PersistentVolumeClaimWorkspaceVolume">
+              <claimName>csw-pvc</claimName>
+              <readOnly>false</readOnly>
           </workspaceVolume>
           <volumes>
               <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
@@ -185,11 +182,6 @@ objects:
                   <claimName>coursier-pvc</claimName>
                   <readOnly>false</readOnly>
               </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
-              <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
-                  <mountPath>/tmp/workspace/cicd-tasks-pipeline</mountPath>
-                  <claimName>workspace-pvc</claimName>
-                  <readOnly>false</readOnly>
-              </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
           </volumes>
           <containers>
               <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
@@ -197,7 +189,7 @@ objects:
                   <image>twtmt/opneshift/jenkins-slave-mvn-sbt</image>
                   <privileged>false</privileged>
                   <alwaysPullImage>false</alwaysPullImage>
-                  <workingDir>/tmp</workingDir>
+                  <workingDir>/home/jenkins/jobs</workingDir>
                   <command></command>
                   <args>${computer.jnlpmac} ${computer.name}</args>
                   <ttyEnabled>false</ttyEnabled>
