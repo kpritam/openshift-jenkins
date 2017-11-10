@@ -166,7 +166,7 @@ objects:
           <label>sbt-2</label>
           <serviceAccount>jenkins</serviceAccount>
           <nodeSelector></nodeSelector>
-          <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>
+          <customWorkspaceVolumeEnabled>true</customWorkspaceVolumeEnabled>
           <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.PersistentVolumeClaimWorkspaceVolume">
               <claimName>csw-pvc</claimName>
               <readOnly>false</readOnly>
