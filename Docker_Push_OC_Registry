@@ -1,0 +1,16 @@
+oc new-project cicd --display-name="CI/CD"
+
+oc policy add-role-to-user edit system:serviceaccount:cicd:jenkins -n cicd
+
+oc process -f cicd.yaml | oc create -f - -n cicd
+
+docker tag twtmt/openshift/jenkins-2.89 docker-registry.default.svc:5000/openshift/jenkins-2.89
+
+oc tag twtmt/openshift/jenkins-2.89 docker-registry.default.svc:5000/openshift/jenkins-2.89
+
+oc whoami -t
+
+docker login --username=pritam --email=phkadam2008@gmail.com.com --password=uOc8320q6kZ2sg6okBG46Ww6Ib8W0ceb7Z9NOHCiR8U docker-registry.default.svc:5000
+
+docker push docker-registry.default.svc:5000/openshift/jenkins-2.89
+
