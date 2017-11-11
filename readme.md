@@ -13,3 +13,11 @@
     3. oc whoami -t
     4. docker login --username=pritam --email=phkadam2008@gmail.com --password=<token> docker-registry.default.svc:5000
     5. docker push docker-registry.default.svc:5000/openshift/jenkins-2.89
+
+## Linux Set UID and GID
+    - groupadd -g 100011000 default
+    - useradd -g 100011000 -u 100011000 default
+    - usermod
+    - groupmod
+    - userdel
+    - groupdel
