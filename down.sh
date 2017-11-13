@@ -2,4 +2,6 @@
 
 oc delete -f volumes/
 
+oc delete template/csw-jenkins-persistent -n openshift
+
 oc delete project cicd
