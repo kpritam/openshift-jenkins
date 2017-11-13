@@ -8,13 +8,13 @@
 
 ## Push Docker Image to OS Docker Registry & ImageStream
 
-    1. docker tag twtmt/openshift/jenkins-2.89 docker-registry.default.svc:5000/openshift/jenkins-2.89
-    2. oc tag twtmt/openshift/jenkins-2.89 docker-registry.default.svc:5000/openshift/jenkins-2.89
-    3. oc whoami -t
-    4. docker login --username=pritam --email=phkadam2008@gmail.com --password=<token> docker-registry.default.svc:5000
-    5. docker push docker-registry.default.svc:5000/openshift/jenkins-2.89
+    1. docker tag twtmt/openshift/jenkins-2.89 <docker-registry-ip>:5000/openshift/jenkins-2.89
+    2. oc whoami -t
+    3. docker login --username=pritam --email=phkadam2008@gmail.com --password=<token> <docker-registry-ip>:5000
+    4. docker push <docker-registry-ip>:5000/openshift/jenkins-2.89
 
 ## Linux Set UID and GID
+
     - groupadd -g 100011000 default
     - useradd -g 100011000 -u 100011000 default
     - usermod
