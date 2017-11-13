@@ -1,7 +1,7 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 labels:
-  template: jenkins-custom-template
+  template: csw-jenkins-persistent-template
 message: >-
   A Jenkins service has been created in your project.  Log into Jenkins with
   your OpenShift account.  The tutorial at
@@ -10,29 +10,27 @@ message: >-
 metadata:
   annotations:
     description: >-
-      Jenkins service, without persistent storage.
+      Jenkins service for csw project, with persistent storage.
 
 
-      WARNING: Any data stored will be lost upon pod destruction. Only use this
-      template for testing.
+      NOTE: You must have persistent volumes available in your cluster to use
+      this template.
     iconClass: icon-jenkins
-    openshift.io/display-name: Jenkins (Ephemeral)
+    openshift.io/display-name: CSW Jenkins (Persistent)
     tags: 'instant-app,jenkins'
     template.openshift.io/documentation-url: 'https://docs.openshift.org/latest/using_images/other_images/jenkins.html'
     template.openshift.io/long-description: >-
       This template deploys a Jenkins server capable of managing OpenShift
-      Pipeline builds and supporting OpenShift-based oauth login.  The Jenkins
-      configuration is stored in non-persistent storage, so this configuration
-      should be used for experimental purposes only.
+      Pipeline builds and supporting OpenShift-based oauth login.
     template.openshift.io/provider-display-name: 'Red Hat, Inc.'
     template.openshift.io/support-url: 'https://access.redhat.com'
   creationTimestamp: '2017-10-31T06:39:50Z'
-  name: jenkins-custom
-  namespace: openshift
-  resourceVersion: '293200'
+  name: csw-jenkins-persistent
+  namespace: cicd
+  resourceVersion: '983'
   selfLink: >-
-    /apis/template.openshift.io/v1/namespaces/openshift/templates/jenkins-custom
-  uid: 4bbe87e1-be06-11e7-858e-525400cae48b
+    /apis/template.openshift.io/v1/namespaces/cicd/templates/csw-jenkins-persistent
+  uid: 4bbfc026-be06-11e7-858e-525400cae48b
 objects:
   - apiVersion: v1
     kind: Route
@@ -47,6 +45,16 @@ objects:
       to:
         kind: Service
         name: '${JENKINS_SERVICE_NAME}'
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: '${JENKINS_SERVICE_NAME}'
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: '${VOLUME_CAPACITY}'
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -109,9 +117,9 @@ objects:
           restartPolicy: Always
           serviceAccountName: '${JENKINS_SERVICE_NAME}'
           volumes:
-            - emptyDir:
-                medium: ''
-              name: '${JENKINS_SERVICE_NAME}-data'
+            - name: '${JENKINS_SERVICE_NAME}-data'
+              persistentVolumeClaim:
+                claimName: '${JENKINS_SERVICE_NAME}'
       triggers:
         - imageChangeParams:
             automatic: true
@@ -166,14 +174,14 @@ objects:
     spec:
       ports:
         - name: web
-          nodePort: 32000
+          nodePort: 0
           port: 80
           protocol: TCP
           targetPort: 8080
       selector:
         name: '${JENKINS_SERVICE_NAME}'
       sessionAffinity: None
-      type: NodePort
+      type: ClusterIP
 parameters:
   - description: The name of the OpenShift Service exposed for the Jenkins container.
     displayName: Jenkins Service Name
@@ -197,11 +205,16 @@ parameters:
     displayName: Memory Limit
     name: MEMORY_LIMIT
     value: 512Mi
+  - description: 'Volume space available for data, e.g. 512Mi, 2Gi.'
+    displayName: Volume Capacity
+    name: VOLUME_CAPACITY
+    required: true
+    value: 1Gi
   - description: The OpenShift Namespace where the Jenkins ImageStream resides.
     displayName: Jenkins ImageStream Namespace
     name: NAMESPACE
-    value: openshift
+    value: cicd
   - description: Name of the ImageStreamTag to be used for the Jenkins image.
     displayName: Jenkins ImageStreamTag
     name: JENKINS_IMAGE_STREAM_TAG
-    value: 'jenkins-2.89:latest'
+    value: 'custom-jenkins:2.89'
