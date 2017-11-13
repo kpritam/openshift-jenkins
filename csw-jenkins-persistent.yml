@@ -1,7 +1,7 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 labels:
-  template: csw-jenkins-persistent-template
+  template: csw-jenkins-persistent
 message: >-
   A Jenkins service has been created in your project.  Log into Jenkins with
   your OpenShift account.  The tutorial at
@@ -26,7 +26,7 @@ metadata:
     template.openshift.io/support-url: 'https://access.redhat.com'
   creationTimestamp: '2017-10-31T06:39:50Z'
   name: csw-jenkins-persistent
-  namespace: cicd
+  namespace: openshift
   resourceVersion: '983'
   selfLink: >-
     /apis/template.openshift.io/v1/namespaces/cicd/templates/csw-jenkins-persistent
@@ -174,14 +174,14 @@ objects:
     spec:
       ports:
         - name: web
-          nodePort: 0
+          nodePort: 32000
           port: 80
           protocol: TCP
           targetPort: 8080
       selector:
         name: '${JENKINS_SERVICE_NAME}'
       sessionAffinity: None
-      type: ClusterIP
+      type: NodePort
 parameters:
   - description: The name of the OpenShift Service exposed for the Jenkins container.
     displayName: Jenkins Service Name
@@ -204,17 +204,17 @@ parameters:
   - description: Maximum amount of memory the container can use.
     displayName: Memory Limit
     name: MEMORY_LIMIT
-    value: 512Mi
+    value: 1Gi
   - description: 'Volume space available for data, e.g. 512Mi, 2Gi.'
     displayName: Volume Capacity
     name: VOLUME_CAPACITY
     required: true
-    value: 1Gi
+    value: 5Gi
   - description: The OpenShift Namespace where the Jenkins ImageStream resides.
     displayName: Jenkins ImageStream Namespace
     name: NAMESPACE
-    value: cicd
+    value: openshift
   - description: Name of the ImageStreamTag to be used for the Jenkins image.
     displayName: Jenkins ImageStreamTag
     name: JENKINS_IMAGE_STREAM_TAG
-    value: 'custom-jenkins:2.89'
+    value: 'openshift-jenkins:2.89'

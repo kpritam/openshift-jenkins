@@ -10,6 +10,6 @@ spec:
   accessModes:
   - ReadWriteMany 
   nfs: 
-    path: /export/ivy
+    path: /export/.ivy2
     server: 127.0.0.1
   persistentVolumeReclaimPolicy: Recycle

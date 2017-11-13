@@ -6,10 +6,10 @@ metadata:
     name: jenkins-pv
 spec:
   capacity:
-    storage: 1Gi
+    storage: 5Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /home/default/jenkins
+    path: /export/jenkins
     server: 127.0.0.1
   persistentVolumeReclaimPolicy: Recycle

@@ -10,6 +10,6 @@ spec:
   accessModes:
   - ReadWriteMany
   nfs:
-    path: /export/mnt
+    path: /export/ws
     server: 127.0.0.1
   persistentVolumeReclaimPolicy: Recycle
