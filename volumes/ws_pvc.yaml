@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: csw-pvc
+  name: ws-pvc
 spec:
   accessModes:
     - ReadWriteMany
@@ -10,4 +10,4 @@ spec:
       storage: 1Gi
   selector:
       matchLabels:
-        name: "csw-pv"
+        name: "ws-pv"

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: csw-pv
+  name: ws-pv
   labels:
-    name: csw-pv
+    name: ws-pv
 spec:
   capacity:
     storage: 1Gi
