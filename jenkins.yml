@@ -71,6 +71,7 @@ objects:
                     parallel {
                         stage('Unit Tests') {
                             steps {
+                                sh "export LC_ALL=en_US.UTF-8"
                                 sh "sbt test:test"
                             }
                         }
