@@ -1,43 +1,43 @@
-openshift-pipeline:1.0.52
-openshift-login:1.0.0
-openshift-client:1.0.2
+openshift-pipeline
+openshift-login
+openshift-client
 
 
 # kubernetes plugin - https://wiki.jenkins-ci.org/display/JENKINS/Kubernetes+Plugin
-kubernetes:1.1
+kubernetes
 
 # fabric8 openshift sync
-openshift-sync:0.1.32
+openshift-sync
 
 # Pipeline plugin - https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin
 # 2.5 now includes pipeline-model-definition (declaritive pipeline)
 # 2.4 brought in pipeline-milestone-step
-workflow-aggregator:2.5
+workflow-aggregator
 
 
 # remote loader https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Remote+Loader+Plugin
-workflow-remote-loader:1.4
+workflow-remote-loader
 
 # mercurial - https://wiki.jenkins-ci.org/display/JENKINS/Mercurial+Plugin
-mercurial:2.2
-matrix-project:1.12
-multiple-scms:0.6
-ssh-credentials:1.13
+mercurial
+matrix-project
+multiple-scms
+ssh-credentials
 
 # Pipeline Utility Steps Plugin - https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Utility+Steps+Plugin
-pipeline-utility-steps:1.5.1
+pipeline-utility-steps
 
 # some plugins helpful for global shared libs were broken out of workflow aggregator
-pipeline-github-lib:1.0
-github-organization-folder:1.6
+pipeline-github-lib
+github-organization-folder
 
 # Jenkins v2 specific
-matrix-auth:2.1.1
-blueocean:1.3.2
+matrix-auth
+blueocean
 
 # Legacy stuff
-mapdb-api:1.0.9.0
-subversion:2.9
+mapdb-api
+subversion
 
 # explicitly pull in plugins previously pulled in by dependencies because of
 # security advisories  ...exclude plugins from 
@@ -48,32 +48,32 @@ subversion:2.9
 # processed sec adv https://jenkins.io/blog/2017/07/10/security-advisory/
 # processed sec adv https://jenkins.io/security/advisory/2017-08-07/
 #
-config-file-provider:2.16.4
-docker-commons:1.9
-git:3.6.4
-git-client:2.6.0
-github-branch-source:2.3.1
-job-dsl:1.66
-parameterized-trigger:2.35.2
-pipeline-build-step:2.5.1
-pipeline-input-step:2.8
-workflow-cps:2.41
-script-security:1.35
-build-timestamp:1.0.1
+config-file-provider
+docker-commons
+git
+git-client
+github-branch-source
+job-dsl
+parameterized-trigger
+pipeline-build-step
+pipeline-input-step
+workflow-cps
+script-security
+build-timestamp
 
-authentication-tokens:1.3
-blueocean-autofavorite:1.1.0
-cloudbees-bitbucket-branch-source:2.2.7
-branch-api:2.0.15
-docker-workflow:1.14
-durable-task:1.15
-favorite:2.3.1
-conditional-buildstep:1.3.6
-credentials-binding:1.13
-display-url-api:2.1.0
-blueocean-display-url:2.1.1
-docker-plugin:1.0.4
-cloudbees-folder:6.2.1
-git-server:1.7
-github-api:1.90
-github:1.28.1
+authentication-tokens
+blueocean-autofavorite
+cloudbees-bitbucket-branch-source
+branch-api
+docker-workflow
+durable-task
+favorite
+conditional-buildstep
+credentials-binding
+display-url-api
+blueocean-display-url
+docker-plugin
+cloudbees-folder
+git-server
+github-api
+github
