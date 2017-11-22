@@ -217,4 +217,4 @@ parameters:
   - description: Name of the ImageStreamTag to be used for the Jenkins image.
     displayName: Jenkins ImageStreamTag
     name: JENKINS_IMAGE_STREAM_TAG
-    value: 'openshift-jenkins:2.89'
+    value: 'openshift-jenkins:2.91'
