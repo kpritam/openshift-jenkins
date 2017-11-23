@@ -167,10 +167,9 @@ objects:
           <label>sbt-2</label>
           <serviceAccount>jenkins</serviceAccount>
           <nodeSelector></nodeSelector>
-          <customWorkspaceVolumeEnabled>true</customWorkspaceVolumeEnabled>
-          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.PersistentVolumeClaimWorkspaceVolume">
-              <claimName>ws-pvc</claimName>
-              <readOnly>false</readOnly>
+          <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>
+          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.EmptyDirWorkspaceVolume">
+          <memory>false</memory>
           </workspaceVolume>
           <volumes>
               <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
@@ -181,6 +180,11 @@ objects:
               <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
                   <mountPath>/home/jenkins/.coursier</mountPath>
                   <claimName>coursier-pvc</claimName>
+                  <readOnly>false</readOnly>
+              </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
+              <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
+                  <mountPath>/home/</mountPath>
+                  <claimName>ws-pvc</claimName>
                   <readOnly>false</readOnly>
               </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
           </volumes>
