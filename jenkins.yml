@@ -169,7 +169,7 @@ objects:
           <nodeSelector></nodeSelector>
           <customWorkspaceVolumeEnabled>true</customWorkspaceVolumeEnabled>
           <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.PersistentVolumeClaimWorkspaceVolume">
-              <claimName>csw-pvc</claimName>
+              <claimName>ws-pvc</claimName>
               <readOnly>false</readOnly>
           </workspaceVolume>
           <volumes>
