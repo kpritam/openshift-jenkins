@@ -130,7 +130,7 @@ objects:
           <containers>
               <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
                   <name>jnlp</name>
-                  <image>twtmt/opneshift/jenkins-slave-mvn-sbt</image>
+                  <image>docker.io/phkadam2008/jenkins-slave-sbt-centos7</image>
                   <privileged>false</privileged>
                   <alwaysPullImage>false</alwaysPullImage>
                   <workingDir>/home/jenkins/jobs</workingDir>
@@ -183,7 +183,7 @@ objects:
                   <readOnly>false</readOnly>
               </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
               <org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
-                  <mountPath>/home/</mountPath>
+                  <mountPath>/home/jenkins/workspace</mountPath>
                   <claimName>ws-pvc</claimName>
                   <readOnly>false</readOnly>
               </org.csanchez.jenkins.plugins.kubernetes.volumes.PersistentVolumeClaim>
@@ -191,10 +191,10 @@ objects:
           <containers>
               <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
                   <name>jnlp</name>
-                  <image>twtmt/opneshift/jenkins-slave-mvn-sbt</image>
+                  <image>docker.io/phkadam2008/jenkins-slave-sbt-centos7</image>
                   <privileged>false</privileged>
                   <alwaysPullImage>false</alwaysPullImage>
-                  <workingDir>/home/jenkins/jobs</workingDir>
+                  <workingDir>/tmp</workingDir>
                   <command></command>
                   <args>${computer.jnlpmac} ${computer.name}</args>
                   <ttyEnabled>false</ttyEnabled>
